@@ -12,6 +12,7 @@ const [text,setText]=useState("");
         if(!isEdit){
             setIsEdit(true);
         }
+        console.log(isEdit)
     }
     const onUpdate1=(e)=>{
         e.preventDefault();
@@ -20,25 +21,24 @@ const [text,setText]=useState("");
         setIsEdit(false);
 
     }
-// const {text,date,time}=this.props;
     return (
         <div>
             {isEdit?(<form >
-      <input  value={props.text} type="text" onChange={(e)=>{
+      <input   type="text" defaultValue={props.text} onChange={(e)=>{
          setText(e.target.value);
         }}/>
-      <input type="date" value={props.date}  onChange={(e)=>{
+      <input type="date" defaultValue={props.date}  onChange={(e)=>{
          setDate(e.target.value);
         }}/>
-      <input type="time" value={props.time} onChange={(e)=>{
+      <input type="time" defaultValue={props.time} onChange={(e)=>{
+          console.log("hi")
          setTime(e.target.value);
         }}/>
+        {" "}
           <Button  type="submit" onClick={onUpdate1} variant="contained" color="primary">
         save
       </Button>
-            </form>):(<h2>{props.text} {"   "} {props.date}{"   "}{props.time}{"   "}  <Button onClick={onEdit} type="submit" variant="contained" color="primary">
-        Edit
-      </Button></h2>)}
+            </form>):(<li onClick={onEdit}>{props.text} {"   "} {props.date}{"   "}{props.time}{"   "}  </li>)}
 
         </div>
     )

@@ -9,8 +9,10 @@ function App() {
  const [text,setText]=useState("");
  const [date,setDate]=useState("");
  const [time,setTime]=useState("");
- const [data,setData]=useState([]);
+ const [img,setImg]=useState(null);
 
+ const [data,setData]=useState([]);
+console.log(img)
 const submit1=()=>{
   setData(data.concat( {
     text:text,
@@ -93,11 +95,15 @@ const classes = useStyles();
     inputProps={{
       step: 300, // 5 min
     }}
-  />      
+  /> 
+  <input type="file" onChange={(e)=>{
+     setImg(URL.createObjectURL(e.target.files[0]));
+  }}/>    
     </form>
     <div className="button"> <Button  type="submit" onClick={submit1} variant="contained" color="primary">
         Add Meating
-      </Button></div>        
+      </Button></div> 
+      <iframe src={img}></iframe>       
        
         {data.map(data1=>{
           return(
